@@ -151,8 +151,8 @@ fi
 
 rm  $tmpfile
 
-echo "Done. Reboot and use wifi-connect-headless-rpi to attach to local wifi"
-echo "Look for SSID Rpi-"$(hostname)" on local wifi rounter" 
+# echo "Done. Reboot and use wifi-connect-headless-rpi to attach to local wifi"
+# echo "Look for SSID Rpi-"$(hostname)" on local wifi rounter" 
 
 
 
