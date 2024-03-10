@@ -145,7 +145,7 @@ if [[ $? == 1 ]]; then
     # crontab $tmpfile
     # echo "*/1 * * * * gpio -g mode 13 in && if [ \$(gpio -g read 13) -eq 0 ]; then sleep 3; if [ \$(gpio -g read 13) -eq 0 ]; then $TOPDIR/scripts/run.sh; fi; fi" >> $tmpfile
     String = "* * * * *"
-    String+="python "
+    String+=" python "
     String+=$TOPDIR
     String+='/scripts/gpio_monitor.py'
       # # print the line
