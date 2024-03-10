@@ -148,7 +148,7 @@ if [[ $? == 1 ]]; then
     String+='/scripts/gpio_monitor.py'
       # # print the line
     echo "python "+$String
-    echo * * * * * python $String >> $tmpfile
+    echo "* * * * * python $String" >> $tmpfile
     crontab $tmpfile
 else
     echo "crontab already updated"
