@@ -2,8 +2,6 @@ import RPi.GPIO as GPIO
 import time
 import subprocess
 import os
-from src import netman
-
 
 # Set up GPIO 13 as an input
 GPIO.setmode(GPIO.BCM)
@@ -24,7 +22,6 @@ while True:
         time.sleep(3)
         if GPIO.input(13) == 0:
             # Execute the script
-            netman.delete_all_wifi_connections()
             subprocess.run([other_script_path])
 
 # Clean up GPIO

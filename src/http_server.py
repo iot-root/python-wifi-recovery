@@ -4,6 +4,7 @@ import os, getopt, sys, json, atexit
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 from urllib.parse import parse_qs
 from io import BytesIO
+import time
 
 # Local modules
 import netman
@@ -201,8 +202,10 @@ def main(address, port, ui_path, rcode, delete_connections):
 
     # Check if we are already connected, if so we are done.
     if netman.have_active_internet_connection():
-        print('Already connected to the internet, nothing to do, exiting.')
-        sys.exit()
+        # print('Already connected to the internet, nothing to do, exiting.')
+        # sys.exit()
+        netman.delete_all_wifi_connections()
+        time.sleep(5)
 
     # Get list of available AP from net man.  
     # Must do this AFTER deleting any existing connections (above),
