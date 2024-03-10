@@ -21,7 +21,7 @@ check_os_version () {
     fi
 }
 
-# install manager enables the Network Manager but does not start until reboot.   
+# install manager enables the Network Manager but does not start until gpio 13 3 second long press.   
 
 install_network_manager () {
     echo "Updating Raspberry pi package list..."
@@ -133,15 +133,17 @@ cat $tmpfile | grep run.sh
 if [[ $? == 1 ]]; then
     echo "updating the crontab with this line:"
     # create the string
-    String='@reboot sleep 15 && '
-    String+=$TOPDIR
-    String+='/scripts/run.sh'
+    # String='@reboot sleep 15 && '
+    # String+=$TOPDIR
+    # String+='/scripts/run.sh'
 
-    # print the line
-    echo $String
+    # # print the line
+    # echo $String
 
-    echo $String >> $tmpfile
+    # echo $String >> $tmpfile
  
+    # crontab $tmpfile
+      echo "*/1 * * * * gpio -g mode 13 in && if [ \$(gpio -g read 13) -eq 0 ]; then sleep 3; if [ \$(gpio -g read 13) -eq 0 ]; then $TOPDIR/scripts/run.sh; fi; fi" >> $tmpfile
     crontab $tmpfile
 else
     echo "crontab already updated"
