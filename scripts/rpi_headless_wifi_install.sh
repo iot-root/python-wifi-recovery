@@ -147,8 +147,8 @@ if [[ $? == 1 ]]; then
     String+=$TOPDIR
     String+='/scripts/gpio_monitor.py'
       # # print the line
-    echo $String
-    echo */1 * * * * python $String >> $tmpfile
+    echo "python "+$String
+    echo * * * * * python $String >> $tmpfile
     crontab $tmpfile
 else
     echo "crontab already updated"
