@@ -22,7 +22,7 @@ while True:
         time.sleep(3)
         if GPIO.input(13) == 0:
             # Execute the script
-            subprocess.run([other_script_path])
+            subprocess.run([other_script_path,'-d'])
 
 # Clean up GPIO
 GPIO.cleanup()
