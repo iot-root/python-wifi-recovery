@@ -2,7 +2,7 @@ import RPi.GPIO as GPIO
 import time
 import subprocess
 import os
-import netman from src
+from src import netman
 
 
 # Set up GPIO 13 as an input
