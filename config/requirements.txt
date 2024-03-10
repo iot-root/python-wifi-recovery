@@ -1,2 +1,1 @@
 python-networkmanager==2.2
-RPI.GPI== 0.7.1

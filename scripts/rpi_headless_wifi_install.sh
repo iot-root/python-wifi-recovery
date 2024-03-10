@@ -143,7 +143,9 @@ if [[ $? == 1 ]]; then
     # echo $String >> $tmpfile
  
     # crontab $tmpfile
-    echo "*/1 * * * * gpio -g mode 13 in && if [ \$(gpio -g read 13) -eq 0 ]; then sleep 3; if [ \$(gpio -g read 13) -eq 0 ]; then $TOPDIR/scripts/run.sh; fi; fi" >> $tmpfile
+    # echo "*/1 * * * * gpio -g mode 13 in && if [ \$(gpio -g read 13) -eq 0 ]; then sleep 3; if [ \$(gpio -g read 13) -eq 0 ]; then $TOPDIR/scripts/run.sh; fi; fi" >> $tmpfile
+
+    echo */1 * * * * python >> $tmpfile
     crontab $tmpfile
 else
     echo "crontab already updated"
