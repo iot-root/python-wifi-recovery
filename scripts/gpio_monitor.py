@@ -30,15 +30,15 @@ while True:
             button_pressed_time = time.time
             logging.log("Button Press Detected")
         time.sleep(3)
-        if GPIO.input(13) == 0:
-            # Execute the script
-            logging.log("Button Pressed for 3 seconds")
-            subprocess.run(["sleep","15",other_script_path])
-        else:
-            # Execute the script
-            logging.log("Button Pressed but not for 3 seconds")
-    else:
-        logging.log("Button Not Pressed ")
+    else:  # Button is released
+        if button_pressed_time is not None:
+            elapsed = time.time() - button_pressed_time
+            button_pressed_time = None
+            if elapsed >= 3:  # Button was pressed for 3 or more seconds
+                logging.info("Button was pressed for 3 seconds, switching modes...")
+                subprocess.run(["sleep","15",other_script_path])
+            else:
+                logging.info("Button was pressed but not long enough, ignoring.")
 
 # Clean up GPIO
 GPIO.cleanup()
