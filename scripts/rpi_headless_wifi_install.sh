@@ -150,7 +150,7 @@ if [[ $? == 1 ]]; then
     String+=$TOPDIR'/scripts/gpio_monitor.py'
       # # print the line
     echo $String
-    echo  '*/1 * * * * ' $String >> $tmpfile
+    echo  '* * * * * ' $String >> $tmpfile
     crontab $tmpfile
 else
     echo "crontab already updated"
