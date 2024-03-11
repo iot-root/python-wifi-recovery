@@ -144,13 +144,13 @@ if [[ $? == 1 ]]; then
  
     # crontab $tmpfile
 
-    String = ' ' 
+    String=' ' 
     String+=`which python3 `
-    String+=$TOPDIR
-    String+='/scripts/gpio_monitor.py'
+    String+=' '
+    String+=$TOPDIR'/scripts/gpio_monitor.py'
       # # print the line
     echo $String
-    echo  '*/1 * * * * '$String >> $tmpfile
+    echo  '*/1 * * * * ' $String >> $tmpfile
     crontab $tmpfile
 else
     echo "crontab already updated"
