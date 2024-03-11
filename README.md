@@ -24,7 +24,7 @@ WiFi Connect detects available WiFi networks and opens an access point with a ca
 
 ### 3. Connect: User Connects Phone to Device Access Point
 
-Connect to the opened access point on the device from your mobile phone or laptop. The access point SSID is, by default, `Rpi-hostname` where hostname if the device name. 
+Connect to the opened access point on the device from your mobile phone or laptop. The access point SSID is, by default, `Rpi-hostname` where hostname is the device name. 
 
 ### 4. Portal: Phone Shows Portal to User in Web Browser
 
