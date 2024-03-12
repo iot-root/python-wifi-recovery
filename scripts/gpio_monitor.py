@@ -37,7 +37,7 @@ while True:
             if elapsed >= 3:  # Button was pressed for 3 or more seconds
                 logging.info("Button was pressed for 3 seconds, switching modes...")
                 subprocess.run(["sleep","15",other_script_path])
-                False
+                
             else:
                 logging.info("Button was pressed but not long enough, ignoring.")
 
