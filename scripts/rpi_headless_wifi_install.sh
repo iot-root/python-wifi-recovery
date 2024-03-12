@@ -128,22 +128,11 @@ crontab -l > $tmpfile
 
 # test if the crontab does not already have run.sh script 
 # if the install script was performed twice, the crontab may already have the script installed. 
-cat $tmpfile | grep run.sh
+cat $tmpfile | grep gpio_monitor.py
 
 if [[ $? == 1 ]]; then
     echo "updating the crontab with this line:"
     # create the string
-    # String='@reboot sleep 15 && '
-    # String+=$TOPDIR
-    # String+='/scripts/run.sh'
-
-    # # print the line
-    # echo $String
-
-    # echo $String >> $tmpfile
- 
-    # crontab $tmpfile
-
     String=' ' 
     String+=`which python3 `
     String+=' '
@@ -157,9 +146,8 @@ else
 fi
 
 rm  $tmpfile
+echo "All Setup Done"
 
-# echo "Done. Reboot and use wifi-connect-headless-rpi to attach to local wifi"
-# echo "Look for SSID Rpi-"$(hostname)" on local wifi rounter" 
 
 
 
