@@ -27,7 +27,7 @@ while True:
     # If GPIO 13 is pressed for 3 seconds, execute the script
     if GPIO.input(13) == 0:
         if button_pressed_time == None:
-            button_pressed_time = time.time
+            button_pressed_time = time.time()
             logging.log("Button Press Detected")
         time.sleep(3)
     else:  # Button is released
