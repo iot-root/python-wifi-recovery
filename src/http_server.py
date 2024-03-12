@@ -206,6 +206,7 @@ def main(address, port, ui_path, rcode, delete_connections):
         # sys.exit()
         netman.delete_all_wifi_connections()
         time.sleep(5)
+        netman.start_hotspot()
 
     # Get list of available AP from net man.  
     # Must do this AFTER deleting any existing connections (above),
