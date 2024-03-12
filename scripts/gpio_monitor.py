@@ -26,20 +26,16 @@ other_script_path = os.path.join(script_dir, "run.sh")
 while True:
     # If GPIO 13 is pressed for 3 seconds, execute the script
     if GPIO.input(13) == 0:
-        if button_pressed_time == None:
-            button_pressed_time = time.time()
-            logging.log("Button Press Detected")
-        time.sleep(3)
-    else:  # Button is released
-        if button_pressed_time is not None:
-            elapsed = time.time() - button_pressed_time
-            button_pressed_time = None
-            if elapsed >= 3:  # Button was pressed for 3 or more seconds
-                logging.info("Button was pressed for 3 seconds, switching modes...")
-                subprocess.run(["sleep","15",other_script_path])
-                
-            else:
-                logging.info("Button was pressed but not long enough, ignoring.")
+        button_pressed_time = time.time()
+        logging.info("Button press detected")
+        while GPIO.input(13) == 0:
+            time.sleep(0.1)
+        elapsed = time.time() - button_pressed_time
+        if elapsed >= 3:
+            logging.info("Button was pressed for 3 seconds, switching modes...")
+            subprocess.run([other_script_path])
+        else:
+            logging.info("Button was pressed but not long enough, ignoring.")
 
 # Clean up GPIO
 GPIO.cleanup()
