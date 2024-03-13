@@ -11,9 +11,6 @@
 
 ### Running
 Button press more than 3 seconds will automatically run the `./run.sh` script\
- `sudo reboot` 
-
-With a direct connection to the rpi, you can manually run the `./run.sh` script.\
 
 # wifi-connect-headless-rpi
 An application written in python that displays a wifi configuration UI for the reaspberry pi zero devices.   The installation program is written to work even when you only have a headless (wifi) connection to the reaspberry pi zero.    
