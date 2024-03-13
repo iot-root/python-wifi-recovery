@@ -23,4 +23,4 @@ cd $TOPDIR
 source $TOPDIR/venv/bin/activate
 
 # Start our application
-sudo python3 $TOPDIR/src/http_server.py -u $TOPDIR/ui/ $*
+python3 $TOPDIR/src/http_server.py -u $TOPDIR/ui/ $*

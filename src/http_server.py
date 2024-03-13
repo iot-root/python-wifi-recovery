@@ -4,7 +4,6 @@ import os, getopt, sys, json, atexit
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 from urllib.parse import parse_qs
 from io import BytesIO
-import time
 
 # Local modules
 import netman

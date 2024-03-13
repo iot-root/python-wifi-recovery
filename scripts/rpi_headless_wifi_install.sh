@@ -21,7 +21,7 @@ check_os_version () {
     fi
 }
 
-# install manager enables the Network Manager but does not start until gpio 13 3 second long press.   
+# install manager enables the Network Manager but does not start until reboot.   
 
 install_network_manager () {
     echo "Updating Raspberry pi package list..."
@@ -137,17 +137,21 @@ if [[ $? == 1 ]]; then
     String+=`which python3 `
     String+=' '
     String+=$TOPDIR'/scripts/gpio_monitor.py'
-      # # print the line
+
+    # print the line
     echo $String
-    echo  '* * * * * ' $String >> $tmpfile
+
+    echo '* * * * *' $String >> $tmpfile
+ 
     crontab $tmpfile
 else
     echo "crontab already updated"
 fi
 
 rm  $tmpfile
-echo "All Setup Done"
 
+echo "Done. Reboot and use wifi-connect-headless-rpi to attach to local wifi"
+echo "Look for SSID Rpi-"$(hostname)" on local wifi rounter" 
 
 
 
