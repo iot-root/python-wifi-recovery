@@ -116,44 +116,42 @@ if [[ "$OSTYPE" == "linux"* ]]; then
     deactivate
 fi
 
-echo "crontab replacement"
+echo "Check if the gpio_monitor.py script is already running as a systemd service"
 
 # Define the filename
 tmpfile='tempfile.txt'
 
 #echo $TOPDIR
 
-# read the current crontab (run in sudo mode)
-crontab -l > $tmpfile
-
-# test if the crontab does not already have run.sh script 
-# if the install script was performed twice, the crontab may already have the script installed. 
-cat $tmpfile | grep gpio_monitor.py
-
-if [[ $? == 1 ]]; then
-    echo "updating the crontab with this line:"
-    # create the string
-    String=' ' 
-    String+=`which python3 `
-    String+=' '
-    String+=$TOPDIR'/scripts/gpio_monitor.py'
-
-    # print the line
-    echo $String
-
-    echo '* * * * *' $String >> $tmpfile
- 
-    crontab $tmpfile
-else
-    echo "crontab already updated"
+# Check if the gpio_monitor.py script is already running as a systemd service
+systemctl status gpio_monitor.service > /dev/null 2>&1
+if [ $? -eq 0 ]; then
+  echo "gpio_monitor.py is already running as a systemd service."
+  exit 0
 fi
+username=$(whoami)
+# Create the systemd service file
+cat <<EOF > /etc/systemd/system/gpio_monitor.service
+[Unit]
+Description=GPIO Monitor Service
+After=multi-user.target
 
-rm  $tmpfile
+[Service]
+Type=simple
+ExecStart=sudo  $TOPDIR/scripts/gpio_monitor.py
+Restart=on-failure
+User=$username
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=gpio_monitor
 
-echo "Done. Reboot and use wifi-connect-headless-rpi to attach to local wifi"
-echo "Look for SSID Rpi-"$(hostname)" on local wifi rounter" 
+[Install]
+WantedBy=multi-user.target
+EOF
 
+# Enable and start the systemd service
+systemctl enable gpio_monitor.service
+systemctl start gpio_monitor.service
 
-
-
-
+# Check the status of the systemd service
+systemctl status gpio_monitor.service
