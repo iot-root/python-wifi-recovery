@@ -4,7 +4,7 @@
 
 ### Clone this repo
 1. `git clone https://github.com/faizannazir/wifi-connect-headless-rpi.git`
-1. `cd wifi-connect-headless-rpi/scripts`
+1. `cd wifi-connect-headless-rpi/scripts`</br>
 1.` make gpio_monitor.py executable `
 1.`chmod +x  gpio_monitor.py `
 ### Install both Network Manager if you need and then wifi-connect
